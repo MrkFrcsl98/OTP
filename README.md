@@ -26,13 +26,21 @@ For example, suppose we have a plaintext message "HELLO" and a PRNG
 that produces the keystream "XMCKL". In this case, first, we convert
 the keystream to binary form:
 Plaintext: H (01001000), E (01000101), L (01001100), L (01001100), O (01001111)
+
 Keystream: X (01011000), M (01001101), C (01000011), K (01001011), L (01001100)
+
 Next, we XOR each bit of the plaintext with the corresponding bit of the keystream:
+
 H (01001000) XOR X (01011000) = 00010000
+
 E (01000101) XOR M (01001101) = 00001000
+
 L (01001100) XOR C (01000011) = 00001111
+
 L (01001100) XOR K (01001011) = 00000111
+
 O (01001111) XOR L (01001100) = 00000011
+
 The resulting ciphertext in binary form is: 00010000 00001000 00001111 00000111 00000011
 To decrypt the ciphertext back into plaintext, the receiver must know
 the keystream and apply the same XOR operation, which will give the
