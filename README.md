@@ -3,7 +3,7 @@
 One of the most secure stream ciphers is the one-time-pad(OTP) stream
 cipher, OTP uses a keystream that is truly random, long as the plain
 text message and used only once.
-OTP stream cipher provides unconditional security.
+OTP stream cipher provides perfect secrecy and unconditional security.
 The encryption process involves XORing each bit of the plaintext
 with the corresponding bit of the keystream:
 
@@ -22,6 +22,17 @@ This problem is known as the "two-time pad" problem, where an attacker
 can exploit the reuse of the keystream to uncover information about the
 plaintext. However, OTP has its practical limitations; generating
 and distributing truly random keystreams long as the message is challenging.
+This is the case when we have a message long 2k bytes, at that point we need
+a key long 2k bytes as well.
+The security of OTP relies on the security of the keystream generator, 
+if the generator computes predictable or deterministic keystreams, the entire
+protocol becomes vulnerable to attacks such as cryptanalysis attacks.
+Even if a portion of the ciphertext is obtained by an attacker and cracked, the rest 
+of the message still remains secure.
+In the past many entities used this stream cipher to securelly exchange information, 
+like the notorious KGB.
+OTP by itself does not include authentication, but techniques like message authentication
+code(MAC) or digital signatures can be used to provide integrity and authenticity.
 For example, suppose we have a plaintext message "HELLO" and a PRNG
 that produces the keystream "XMCKL". In this case, first, we convert
 the keystream to binary form:
